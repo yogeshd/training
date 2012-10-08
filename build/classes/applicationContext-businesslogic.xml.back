@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+     
+    <bean id="abstractMerchantBusinessLogic" abstract="true">
+        <property name="glbCountryMstDao" ref="glbCountryMstDao" />
+        <property name="glbFeePlanMstDao" ref="glbFeePlanMstDao" />
+        <property name="glbMerchantStatusMstDao" ref="glbMerchantStatusMstDao" />        
+        <property name="glbConceptTblDao" ref="glbConceptTblDao" />
+        <property name="glbExpressionTblDao" ref="glbExpressionTblDao" />
+        <property name="glbMerchantTblDao" ref="glbMerchantTblDao" />        
+        <property name="glbAddressTblDao" ref="glbAddressTblDao" />
+        <property name="glbMerchantAddressTblDao" ref="glbMerchantAddressTblDao" />
+        <property name="glbMerchantContactTblDao" ref="glbMerchantContactTblDao" />
+        <property name="glbContractTblDao" ref="glbContractTblDao" />
+        <property name="glbMerchantStatusLogDao" ref="glbMerchantStatusLogDao" />
+    </bean>   
+    <bean id="merchantCreateBusinessLogic" class="com.rakuten.gep.merchant.api.businesslogic.impl.MerchantCreateBusinessLogicImpl" parent="abstractMerchantBusinessLogic" scope="singleton" />
+    <bean id="merchantUpdateBusinessLogic" class="com.rakuten.gep.merchant.api.businesslogic.impl.MerchantUpdateBusinessLogicImpl" parent="abstractMerchantBusinessLogic" scope="singleton" />
+    <bean id="merchantGetBusinessLogic" class="com.rakuten.gep.merchant.api.businesslogic.impl.MerchantGetBusinessLogicImpl" parent="abstractMerchantBusinessLogic" scope="singleton" />
+           
+    <bean id="abstractShopBusinessLogic" abstract="true">
+        <property name="glbCountryMstDao" ref="glbCountryMstDao" />        
+        <property name="glbShopStatusMstDao" ref="glbShopStatusMstDao" />        
+        <property name="glbConceptTblDao" ref="glbConceptTblDao" />
+        <property name="glbExpressionTblDao" ref="glbExpressionTblDao" />
+        <property name="glbShopTblDao" ref="glbShopTblDao" />        
+        <property name="glbAddressTblDao" ref="glbAddressTblDao" />
+        <property name="glbShopAddressTblDao" ref="glbShopAddressTblDao" />
+        <property name="glbShopContactTblDao" ref="glbShopContactTblDao" />
+        <property name="glbContractTblDao" ref="glbContractTblDao" />
+        <property name="glbShopFeeTblDao" ref="glbShopFeeTblDao" />        
+        <property name="glbShopStatusLogDao" ref="glbShopStatusLogDao" />
+    </bean>
+    
+    <bean id="shopCreateBusinessLogic" class="com.rakuten.gep.merchant.api.businesslogic.impl.ShopCreateBusinessLogicImpl" parent="abstractShopBusinessLogic" scope="singleton"/>
+    <bean id="shopUpdateBusinessLogic" class="com.rakuten.gep.merchant.api.businesslogic.impl.ShopUpdateBusinessLogicImpl" parent="abstractShopBusinessLogic" scope="singleton"/>
+    <bean id="shopGetBusinessLogic" class="com.rakuten.gep.merchant.api.businesslogic.impl.ShopGetBusinessLogicImpl" parent="abstractShopBusinessLogic" scope="singleton"/>
+    
+    <bean id="personBusinessLogic" class="com.rakuten.gep.merchant.api.businesslogic.impl.PersonBusinessLogicImpl" scope="singleton"> 
+        <property name="personTblDao" ref="personTblDao" />
+        <property name="merchantPersonTblDao" ref="merchantPersonTblDao" />
+        <property name="shopPersonTblDao" ref="shopPersonTblDao" />
+        <property name="personLoginLogTblDao" ref="personLoginLogTblDao" />
+        <property name="properties" ref="properties" />
+    </bean>
+    
+    <bean id="findBusinessLogic" class="com.rakuten.gep.merchant.api.businesslogic.impl.FindBusinessLogicImpl" scope="singleton">
+        <property name="merchantGetBusinessLogic" ref="merchantGetBusinessLogic" />
+        <property name="shopGetBusinessLogic" ref="shopGetBusinessLogic" />
+    </bean>            
+        
+</beans>
+

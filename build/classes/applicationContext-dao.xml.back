@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="configLocation">
+            <value>classpath:/MapperConfig.xml</value>
+        </property>
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    <!-- all dao inherit baseDao -->
+    <bean id="baseDAO" abstract="true">
+        <property name="sqlSessionFactory">
+            <ref local="sqlSessionFactory" />
+        </property>
+    </bean>
+    <!-- dao -->    
+    <bean id="glbCountryMstDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbCountryMstDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbConceptTblMapper" />
+    </bean>
+    <bean id="glbFeePlanMstDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbFeePlanMstDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbFeePlanMstMapper" />
+    </bean>
+    <bean id="glbMerchantStatusMstDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbMerchantStatusMstDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbMerchantStatusMstMapper" />
+    </bean>
+    <bean id="glbShopStatusMstDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbShopStatusMstDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbMerchantStatusMstMapper" />
+    </bean>
+    <bean id="glbConceptTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbConceptTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbConceptTblMapper" />
+    </bean>
+    <bean id="glbExpressionTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbExpressionTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbExpressionTblMapper" />
+    </bean>
+    <bean id="glbMerchantTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbMerchantTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbMerchantTblMapper" />
+    </bean>
+    <bean id="glbAddressTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbAddressTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbAddressTblMapper" />
+    </bean>
+    <bean id="glbMerchantAddressTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbMerchantAddressTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbMerchantAddressTblMapper" />
+    </bean>
+    <bean id="glbMerchantContactTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbMerchantContactTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbMerchantContactTblMapper" />
+    </bean>
+    <bean id="glbContractTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbContractTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbContractTblMapper" />
+    </bean>
+    <bean id="glbMerchantStatusLogDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbMerchantStatusLogDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbMerchantStatusLogMapper" />
+    </bean>
+    <bean id="glbShopTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbShopTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbShopTblMapper" />
+    </bean>   
+    <bean id="glbShopAddressTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbShopAddressTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbShopAddressTblMapper" />
+    </bean>
+    <bean id="glbShopContactTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbShopContactTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbShopContactTblMapper" />
+    </bean> 
+    <bean id="glbShopFeeTblDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbShopFeeTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbShopFeeTblMapper" />
+    </bean>   
+    <bean id="glbShopStatusLogDao" class="com.rakuten.gep.merchant.api.dao.impl.GlbShopStatusLogDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.GlbShopStatusLogMapper" />
+    </bean>
+     <!--  Merchant login -->
+    <bean id="personTblDao" class="com.rakuten.gep.merchant.api.dao.impl.PersonTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.PersonTblMapper" />
+    </bean>
+    <bean id="merchantPersonTblDao" class="com.rakuten.gep.merchant.api.dao.impl.MerchantPersonTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.MerchantPersonTblMapper" />
+    </bean>
+    <bean id="shopPersonTblDao" class="com.rakuten.gep.merchant.api.dao.impl.ShopPersonTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.ShopPersonTblMapper" />
+    </bean>
+    <bean id="personLoginLogTblDao" class="com.rakuten.gep.merchant.api.dao.impl.PersonLoginLogTblDaoImpl" parent="baseDAO" scope="singleton">
+        <property name="namespace" value="com.rakuten.gep.merchant.api.dao.mapper.PersonLoginLogTblMapper" />
+    </bean>      
+   
+</beans>
